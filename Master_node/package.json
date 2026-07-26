@@ -1,0 +1,20 @@
+{
+  "name": "edge_node",
+  "version": "1.0.0",
+  "description": "This is the edge node that deliver the content to client",
+  "license": "ISC",
+  "author": "Jashan Sehdev",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev" : "nodemon server.js",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@libsql/client": "^0.17.4",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "multer": "^2.2.0"
+  }
+}

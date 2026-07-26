@@ -1,0 +1,29 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    
+
+    {
+      "name": "Debug edge_node",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/edge_node",
+      "program": "${workspaceFolder}/edge_node/server.js",
+      "console": "integratedTerminal",
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    },
+    {
+      "name": "Debug master_node",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/Master_node",
+      "program": "${workspaceFolder}/Master_node/server.js",
+      "console": "integratedTerminal",
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    }
+  ]
+}
