@@ -20,10 +20,11 @@ await db.execute('PRAGMA synchronous = NORMAL;');
 await db.execute(`
   CREATE TABLE IF NOT EXISTS assets (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    filename TEXT NOT NULL UNIQUE,
+    filename TEXT NOT NULL,
     size INTEGER NOT NULL,
     mime_type TEXT,
-    created_at INTEGER NOT NULL)
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+  )
 `);
 
 /**

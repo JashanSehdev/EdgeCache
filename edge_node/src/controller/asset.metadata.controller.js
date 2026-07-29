@@ -1,14 +1,24 @@
 import {
     getAllAssets
-} from "../database/db.js"
+} from "../meta_database/db.js"
+import logger from '../services/logger.js'
 
 export async function pullMetadata(req, res) {
     try{
         const result = await getAllAssets();
 
+        logger.info(`Pulling request recieved`, {
+            action: 'sending IP Address',
+            filename: 'Metadata'
+        })
+
         res.status(200).send(result);
         
     } catch (err){
-        console.log(err);
+        logger.error(`Error found while sending metadata`, {
+            function: pullMetadata.name,
+            error: err,
+        })
+        res.status(500).json({message: 'Internal Server Error'})
     }
 }
