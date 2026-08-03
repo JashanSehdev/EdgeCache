@@ -1,11 +1,9 @@
-import {
-    getAllAssets
-} from "../meta_database/db.js"
+import { get_all_entries, delete_asset_by_filename } from '../database/db.js';
 import logger from '../services/logger.js'
 
 export async function pullMetadata(req, res) {
     try{
-        const result = await getAllAssets();
+        const result = await get_all_entries();
 
         logger.info(`Pulling request recieved`, {
             action: 'sending IP Address',
