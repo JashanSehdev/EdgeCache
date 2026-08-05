@@ -1,11 +1,11 @@
 import {
-    getAllAssets
-} from "../meta_database/db.js"
+    get_all_entries
+} from "../database/db.js"
 import logger from "../services/logger.js"
 
 export async function get_asset_metadata(req, res) {
     try {
-        const result = await getAllAssets();
+        const result = await get_all_entries();
 
         logger.info('Pulling request received', {
             function: 'get_asset_metadata',

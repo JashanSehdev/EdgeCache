@@ -23,18 +23,18 @@ await db.execute(`
     filename TEXT NOT NULL,
     size INTEGER NOT NULL,
     mime_type TEXT,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-  )
+    created_at INTEGER NOT NULL)
 `);
 
 /**
  * INSERT Asset
  */
-export async function addAsset(filename, size, mimeType) {
+export async function add_entry(filename, size, mimeType) {
   const created_at = Date.now();
+  const safeMimeType = mimeType ?? null;
   const result = await db.execute({
     sql: 'INSERT INTO assets (filename, size, mime_type, created_at) VALUES (?, ?, ?, ?)',
-    args: [filename, size, mimeType, created_at],
+    args: [filename, size, safeMimeType, created_at],
   });
 
   return Number(result.lastInsertRowid); // Returns the ID of inserted row
@@ -43,7 +43,7 @@ export async function addAsset(filename, size, mimeType) {
 /**
  * SELECT Single Asset by Filename
  */
-export async function getAssetByfileName(filename) {
+export async function get_entry_by_filename(filename) {
   const result = await db.execute({
     sql: 'SELECT * FROM assets WHERE filename = ?',
     args: [filename],
@@ -55,7 +55,7 @@ export async function getAssetByfileName(filename) {
 /**
  * SELECT All Assets
  */
-export async function getAllAssets() {
+export async function get_all_entries() {
   const result = await db.execute('SELECT * FROM assets ORDER BY created_at DESC');
   return result.rows; // Returns array of objects
 }
@@ -63,7 +63,7 @@ export async function getAllAssets() {
 /**
  * DELETE Asset by Filename
  */
-export async function deleteAssetByfileName(filename) {
+export async function delete_asset_by_filename (filename) {
   const result = await db.execute({
     sql: 'DELETE FROM assets WHERE filename = ?',
     args: [filename],
